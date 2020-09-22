@@ -22,7 +22,7 @@ export default class Pesquisa extends Component {
 
 
     subscribeToEvents = () => {
-        const io = socket('http://localhost:3333' || process.env.REACT_APP_API_URL);
+        const io = socket('http://localhost');
         io.on('search', data => {
             this.setState({ info_palavras: [data] })
         })
