@@ -22,7 +22,7 @@ export default class Pesquisa extends Component {
 
 
     subscribeToEvents = () => {
-        const io = socket('http://localhost');
+        const io = socket('https://desafio-stilingue-backend.herokuapp.com/');
         io.on('search', data => {
             this.setState({ info_palavras: [data] })
         })
