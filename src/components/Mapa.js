@@ -22,10 +22,10 @@ export default class Info extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({
+        /*this.setState({
             w: window.innerWidth ,
             h: window.innerHeight - 150 
-        })
+        })*/
         this.setUpListeners()
     }
 
@@ -33,12 +33,6 @@ export default class Info extends Component {
         this.cy.on('click', 'node', (event) => {
             console.log(event.target)
         })
-    }
-
-    remove = () => {
-        var j = this.cy.$('node[selected=true]')
-        this.cy.remove(j)
-        console.log()
     }
 
 
@@ -218,11 +212,10 @@ export default class Info extends Component {
                     ]
 
                     }
-                    style={{ 
+                    /*style={{ 
                         width: this.state.w,
-                        height: this.state.h,
-                        border: 200                        
-                    }}
+                        height: this.state.h,                      
+                    }}*/
                     
                     cy={(cy) => { this.cy = cy }}
                     layout={layout}
