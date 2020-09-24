@@ -34,7 +34,7 @@ export default class Pesquisa extends Component {
         if (e.keyCode !== 13) return;
         const palavra = this.state.palavra;
         const response = await api.post("/", { palavra })
-        var inicio = performace.now()
+        var inicio = performance.now()
         const response1 = await api.get(`/${response.data._id}`);
         console.log(performance.now()-inicio)
         this.setState({ info_palavras: response1.data });
