@@ -22,7 +22,7 @@ export default class Pesquisa extends Component {
 
 
     subscribeToEvents = () => {
-        const io = socket('http://localhost:3000');
+        const io = socket('http://desafio-clara-com.umbler.net/');
         io.on('search', data => {
             this.setState({ info_palavras: [data] })
         })
