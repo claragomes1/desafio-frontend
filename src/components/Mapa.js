@@ -223,7 +223,7 @@ export default class Info extends Component {
                     zoom={0.9}
                     minZoom={0.6}
                     maxZoom={1.3}                   
-                    animate={true}
+                    //animate={true}
                 />
                 
             </div>
