@@ -36,7 +36,7 @@ export default class Pesquisa extends Component {
         const response = await api.post("/", { palavra })
         var inicio = new Date();
         const response1 = await api.get(`/${response.data._id}`);
-        console.log(new Date()-inicio)
+        console.log("AQUI: " + new Date()-inicio)
         this.setState({ info_palavras: response1.data });
         this.setState({ palavra: "" });
 
