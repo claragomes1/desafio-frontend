@@ -22,10 +22,10 @@ export default class Info extends Component {
     }
 
     componentDidMount = () => {
-        /*this.setState({
+        this.setState({
             w: window.innerWidth ,
             h: window.innerHeight - 150 
-        })*/
+        })
         this.setUpListeners()
     }
 
@@ -212,10 +212,10 @@ export default class Info extends Component {
                     ]
 
                     }
-                    /*style={{ 
+                    style={{ 
                         width: this.state.w,
-                        height: this.state.h,                      
-                    }}*/
+                        height: this.state.h,
+                    }}
                     
                     cy={(cy) => { this.cy = cy }}
                     layout={layout}
