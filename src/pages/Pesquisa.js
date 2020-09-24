@@ -3,12 +3,15 @@ import api from '../services/api';
 import Mapa from '../components/Mapa';
 import socket from 'socket.io-client';
 import './Pesquisa.css';
+import LoadingMask from "react-loadingmask";
+import "react-loadingmask/dist/react-loadingmask.css";
 
 export default class Pesquisa extends Component {
 
     state = {
         info_palavras: [],
         palavra: "",
+        loading: true
     };
 
     async componentDidMount() {//Executado automaticamente quando a pagina é exibida em tela
@@ -24,7 +27,7 @@ export default class Pesquisa extends Component {
     subscribeToEvents = () => {
         const io = socket('http://desafio-clara-com.umbler.net/');
         io.on('search', data => {
-            this.setState({ info_palavras: [data] })
+            this.setState({ info_palavras: [data] , loading:false })
         })
     }
 
@@ -38,6 +41,7 @@ export default class Pesquisa extends Component {
         console.log(response1.data)
         this.setState({ info_palavras: response1.data });
         this.setState({ palavra: "" });
+        this.setState({loading: false});
 
         
     }
@@ -52,11 +56,10 @@ export default class Pesquisa extends Component {
     //render();
 
     render() {
-       //const { info_palavras } = this.state;
+        //const { info_palavras } = this.state;
         if (this.state.info_palavras.length !== 0) {
-
             return (
-                
+
                 <div className="tela">
                     <nav className="border">
                         <div className="nav-wrapper">
@@ -72,17 +75,17 @@ export default class Pesquisa extends Component {
                                         placeholder="Digite uma palavra"
                                     />
                                     <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                    <i className="material-icons">close</i>
+                              
                                 </div>
                             </form>
                         </div>
                     </nav>
-                    
+
                     <Mapa key={this.state.info_palavras._id} info_palavras={this.state.info_palavras} />
 
                 </div>
             );
-        } else {
+        } else if (this.state.info_palavras.length === 0 && this.state.loading === false) {
             return (
                 <div className="tela">
                     <nav className="border">
@@ -99,15 +102,48 @@ export default class Pesquisa extends Component {
                                         placeholder="Digite uma palavra"
                                     />
                                     <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                    <i className="material-icons">close</i>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                    <LoadingMask loading={true} text={"loading..."}>
+                        <div className="ldg" style={{ width: 500, height: 300 }}></div>
+                    </LoadingMask>
+
+                </div>
+            );
+
+        } else if (this.state.info_palavras.length === 0 && this.state.loading === true) {
+            return (
+
+                <div className="tela">
+                    <nav className="border">
+                        <div className="nav-wrapper">
+                            <form >
+                                <div className="input-field">
+                                    <input
+                                        id="search"
+                                        type="search"
+                                        required
+                                        value={this.state.palavra}
+                                        onChange={this.handleInputChange}
+                                        onKeyDown={this.handleNewSearch}
+                                        placeholder="Digite uma palavra"
+                                    />
+                                    <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
+                                  
                                 </div>
                             </form>
                         </div>
                     </nav>
                     
+                    <LoadingMask loading={true} text={"loading..."}>
+                        <div style={{ width: 500, height: 300 }}></div>
+                    </LoadingMask>
+
                 </div>
             );
-
         }
     }
 }
