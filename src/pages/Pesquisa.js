@@ -34,10 +34,12 @@ export default class Pesquisa extends Component {
         if (e.keyCode !== 13) return;
         const palavra = this.state.palavra;
         const response = await api.post("/", { palavra })
+        var inicio = performace.now()
         const response1 = await api.get(`/${response.data._id}`);
+        console.log(performance.now()-inicio)
         this.setState({ info_palavras: response1.data });
         this.setState({ palavra: "" });
-        console.log(response.data)
+
         
     }
 
@@ -53,6 +55,7 @@ export default class Pesquisa extends Component {
     render() {
        //const { info_palavras } = this.state;
         if (this.state.info_palavras.length !== 0) {
+
             return (
                 
                 <div className="tela">
