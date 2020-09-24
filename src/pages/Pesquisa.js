@@ -3,15 +3,12 @@ import api from '../services/api';
 import Mapa from '../components/Mapa';
 import socket from 'socket.io-client';
 import './Pesquisa.css';
-import LoadingMask from "react-loadingmask";
-import "react-loadingmask/dist/react-loadingmask.css";
 
 export default class Pesquisa extends Component {
 
     state = {
         info_palavras: [],
         palavra: "",
-        loading: true
     };
 
     async componentDidMount() {//Executado automaticamente quando a pagina é exibida em tela
@@ -27,7 +24,7 @@ export default class Pesquisa extends Component {
     subscribeToEvents = () => {
         const io = socket('https://desafio-stilingue-backend.herokuapp.com/');
         io.on('search', data => {
-            this.setState({ info_palavras: [data], loading: false })
+            this.setState({ info_palavras: [data] })
         })
     }
 
@@ -75,7 +72,6 @@ export default class Pesquisa extends Component {
                                         placeholder="Digite uma palavra"
                                     />
                                     <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                    <i className="material-icons">close</i>
                                 </div>
                             </form>
                         </div>
@@ -102,14 +98,12 @@ export default class Pesquisa extends Component {
                                         placeholder="Digite uma palavra"
                                     />
                                     <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                    <i className="material-icons">close</i>
+
                                 </div>
                             </form>
                         </div>
                     </nav>
-                    <LoadingMask loading={true} text={"loading..."}>
-                        <div className="ldg" style={{ width: 500, height: 300 }}></div>
-                    </LoadingMask>
+                    
                 </div>
             );
 
