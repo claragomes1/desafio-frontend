@@ -72,7 +72,6 @@ export default class Pesquisa extends Component {
                                         placeholder="Digite uma palavra"
                                     />
                                     <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                    <i className="material-icons">close</i>
                                 </div>
                             </form>
                         </div>
@@ -99,7 +98,6 @@ export default class Pesquisa extends Component {
                                         placeholder="Digite uma palavra"
                                     />
                                     <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
-                                    <i className="material-icons">close</i>
                                 </div>
                             </form>
                         </div>
